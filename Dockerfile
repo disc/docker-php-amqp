@@ -28,6 +28,6 @@ RUN apt-get -qq update && apt-get -qq -y install  \
     && mkdir build && cd build \
     && cmake -DENABLE_SSL_SUPPORT=OFF .. \
     && cmake --build . --target install  \
-    && pecl install amqp imagick xdebug \
-  && docker-php-ext-enable amqp imagick xdebug \
+    && pecl install amqp imagick xdebug igbinary \
+  && docker-php-ext-enable amqp imagick xdebug igbinary \
   && rm -rf /var/lib/apt/lists/*
