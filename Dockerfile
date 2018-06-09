@@ -7,7 +7,6 @@ RUN apt-get -qq update && apt-get -qq -y install  \
     git \
     libicu-dev \
     libmagickwand-dev \
-    libmcrypt-dev \
     libpng-dev \
     librabbitmq-dev \
     libreadline-dev \
@@ -19,7 +18,6 @@ RUN apt-get -qq update && apt-get -qq -y install  \
     bcmath \
     gd \
     intl \
-    mcrypt \
     opcache \
     pdo_mysql \
     zip \
