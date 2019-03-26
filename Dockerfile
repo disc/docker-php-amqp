@@ -20,6 +20,7 @@ RUN apt-get -qq update && apt-get -qq -y install  \
     intl \
     opcache \
     pdo_mysql \
+    sockets \
     zip \
   && git clone git://github.com/alanxz/rabbitmq-c.git \
     && cd rabbitmq-c \
