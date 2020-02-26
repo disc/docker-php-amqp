@@ -27,9 +27,9 @@ RUN apt-get -qq update && apt-get -qq -y install  \
     && mkdir build && cd build \
     && cmake -DENABLE_SSL_SUPPORT=OFF .. \
     && cmake --build . --target install  \
-    && pecl install amqp imagick xdebug igbinary \
+    && pecl install amqp imagick xdebug igbinary redis \
     && rm -rf ../rabbitmq-c \
-  && docker-php-ext-enable amqp imagick xdebug igbinary \
+  && docker-php-ext-enable amqp imagick xdebug igbinary redis \
   && version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
     && mkdir -p /tmp/blackfire \
