@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.4-fpm
 
 RUN apt-get -qq update && apt-get -qq -y install  \
     automake \
