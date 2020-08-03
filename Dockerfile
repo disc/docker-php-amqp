@@ -1,14 +1,35 @@
 FROM php:7.4-fpm
 
-RUN apt-get -qq update && apt-get -qq -y install \
+RUN apt-get -qq update && apt-get -qq -y install  \
+  automake \
+  cmake \
+  g++ \
+  git \
   libicu-dev \
   libmagickwand-dev \
   libpng-dev \
-  zlib1g-dev \
+  librabbitmq-dev \
+  libreadline-dev \
   libzip-dev \
-  && docker-php-ext-install bcmath gd intl opcache pdo_mysql sockets zip \
-  && pecl install imagick xdebug igbinary redis \
-  && docker-php-ext-enable imagick xdebug igbinary redis \
+  zlib1g-dev \
+  pkg-config \
+  ssh-client \
+  && docker-php-ext-install \
+  bcmath \
+  gd \
+  intl \
+  opcache \
+  pdo_mysql \
+  sockets \
+  zip \
+  && git clone git://github.com/alanxz/rabbitmq-c.git \
+  && cd rabbitmq-c \
+  && mkdir build && cd build \
+  && cmake -DENABLE_SSL_SUPPORT=OFF .. \
+  && cmake --build . --target install  \
+  && pecl install amqp imagick xdebug igbinary redis \
+  && rm -rf ../rabbitmq-c \
+  && docker-php-ext-enable amqp imagick xdebug igbinary redis \
   && version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
   && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
   && mkdir -p /tmp/blackfire \
