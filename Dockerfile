@@ -14,6 +14,8 @@ RUN apt-get -qq update && apt-get -qq -y install  \
     ssh-client \
     supervisor \
     zlib1g-dev \
+    libldb-dev \
+    libldap2-dev \
   && docker-php-ext-install \
     bcmath \
     gd \
@@ -22,6 +24,7 @@ RUN apt-get -qq update && apt-get -qq -y install  \
     pdo_mysql \
     sockets \
     zip \
+    ldap \
   && git clone git://github.com/alanxz/rabbitmq-c.git \
     && cd rabbitmq-c \
     && mkdir build && cd build \
